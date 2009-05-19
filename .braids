@@ -1,0 +1,8 @@
+--- 
+vendor/ruby-pivotal-tracker: 
+  squashed: true
+  url: git://github.com/mcommons/ruby-pivotal-tracker.git
+  branch: master
+  type: git
+  revision: 13dd7b744362cb3031814c8742194d8e2ac188c3
+  remote: braid/vendor/ruby-pivotal-tracker

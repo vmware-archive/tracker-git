@@ -1,0 +1,39 @@
+=== Ruby Pivotal Tracker
+ 
+- [Code on GitHub](http://github.com/mcommons/ruby-pivotal-tracker)
+ 
+=== Description
+
+- A Ruby client library for Pivotal Tracker
+
+=== Installation
+
+No installation needed. Just pass your API token key & project ID.  You can get these values by logging into Tracker.
+
+=== Changelog
+
+2008-12-14: Added add_comment() support
+2008-12-13: Better return values (e.g. the contents of the response as a hash)
+2008-12-07: Success/failure validation of the response xml.
+2008-12-07: Added some return values 
+2008-12-06: SSL support
+2008-12-06: Forked by Mobile Commons
+
+=== TODO
+
+Add proper tests
+More consistent return values from each method
+DRY up the redundant code quite a bit
+Add a 'deliver' function
+Add better support for labels
+
+
+=== Contributers
+
+Benjamin Stein, http://github.com/benstein
+Justin Smestad, http://github.com/jsmestad, who wrote the original version
+
+=== License
+
+Copyright (c) 2008 Mobile Commons
+See MIT-LICENSE.txt in this directory.
