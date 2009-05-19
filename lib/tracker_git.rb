@@ -10,7 +10,7 @@ module TrackerGit
   end
 end
 
-require "#{dir}/tracker_git/git_log"
+require "#{dir}/tracker_git/git_log_commands"
 require "#{dir}/tracker_git/command"
 Dir["#{dir}/tracker_git/command/*.rb"].each do |file|
   require file

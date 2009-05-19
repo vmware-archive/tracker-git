@@ -1,5 +1,5 @@
 module TrackerGit
-  class GitLog
+  class GitLogCommands
     attr_reader :working_directory, :start_revision, :finish_revision
     def initialize(working_directory, start_revision, finish_revision)
       @working_directory, @start_revision, @finish_revision = working_directory, start_revision, finish_revision

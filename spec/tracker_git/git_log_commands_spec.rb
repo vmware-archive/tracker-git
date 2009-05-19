@@ -1,12 +1,12 @@
 require File.expand_path("#{File.dirname(__FILE__)}/../spec_helper")
 
 module TrackerGit
-  describe GitLog do
+  describe GitLogCommands do
     describe "#call" do
       it "calls Finish commands for each finish!story_id found in the git logs between the #start_revision and #finish_revision" do
         working_dir = File.expand_path("#{File.dirname(__FILE__)}/../..")
         start_revision, finish_revision = "start_revision", "finish_revision"
-        log = GitLog.new(working_dir, start_revision, finish_revision)
+        log = GitLogCommands.new(working_dir, start_revision, finish_revision)
         
         mock.proxy(Git).open(working_dir, is_a(Hash)) do |git|
           mock.proxy(git).log do |log|
