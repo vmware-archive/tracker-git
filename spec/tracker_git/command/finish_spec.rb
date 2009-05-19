@@ -9,7 +9,7 @@ module TrackerGit
         tracker = Tracker.new
         mock.strong(tracker).find_story(story_id) {story}
         mock.strong(tracker).update_story(story.merge(:current_state => "finished"))
-        Command::Finish.new(story_id).call(tracker)
+        Command::Finish.call(tracker, story_id)
       end
     end
   end

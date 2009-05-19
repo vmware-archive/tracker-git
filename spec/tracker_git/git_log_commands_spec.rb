@@ -23,24 +23,12 @@ module TrackerGit
 
         tracker = Tracker.new
 
-        mock.proxy(Command::Finish).new(111111) do |finish|
-          mock.strong(finish).call(tracker)
-        end
-        mock.proxy(Command::Finish).new(222222) do |finish|
-          mock.strong(finish).call(tracker)
-        end
-        mock.proxy(Command::Finish).new(222223) do |finish|
-          mock.strong(finish).call(tracker)
-        end
-        mock.proxy(Command::Finish).new(333333) do |finish|
-          mock.strong(finish).call(tracker)
-        end
-        mock.proxy(Command::Finish).new(333334) do |finish|
-          mock.strong(finish).call(tracker)
-        end
-        mock.proxy(Command::Finish).new(333335) do |finish|
-          mock.strong(finish).call(tracker)
-        end
+        mock.strong(Command::Finish).call(tracker, 111111)
+        mock.strong(Command::Finish).call(tracker, 222222)
+        mock.strong(Command::Finish).call(tracker, 222223)
+        mock.strong(Command::Finish).call(tracker, 333333)
+        mock.strong(Command::Finish).call(tracker, 333334)
+        mock.strong(Command::Finish).call(tracker, 333335)
 
         log.call(tracker)
       end

@@ -22,7 +22,7 @@ module TrackerGit
       commits.each do |commit|
         commit.message.gsub(finish_regexp) do |occurrences|
           finish_regexp.match(occurrences)[1].split(",").each do |occurrence|
-            Command::Finish.new(occurrence.to_i).call(tracker)
+            Command::Finish.call(tracker, occurrence.to_i)
           end
         end
       end
