@@ -23,12 +23,12 @@ module TrackerGit
 
         tracker = Tracker.new
 
-        mock.strong(Command::Finish).call(tracker, 111111)
-        mock.strong(Command::Finish).call(tracker, 222222)
-        mock.strong(Command::Finish).call(tracker, 222223)
-        mock.strong(Command::Finish).call(tracker, 333333)
-        mock.strong(Command::Finish).call(tracker, 333334)
-        mock.strong(Command::Finish).call(tracker, 333335)
+        mock.strong(Command::Finish).call(tracker, 111111).ordered
+        mock.strong(Command::Finish).call(tracker, 222222).ordered
+        mock.strong(Command::Finish).call(tracker, 222223).ordered
+        mock.strong(Command::Finish).call(tracker, 333333).ordered
+        mock.strong(Command::Finish).call(tracker, 333334).ordered
+        mock.strong(Command::Finish).call(tracker, 333335).ordered
 
         log.call(tracker)
       end
