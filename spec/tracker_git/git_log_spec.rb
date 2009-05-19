@@ -2,8 +2,8 @@ require File.expand_path("#{File.dirname(__FILE__)}/../spec_helper")
 
 module TrackerGit
   describe GitLog do
-    describe "#parse" do
-      it "returns an array of Finish commands for each finish!story_id found in the git logs between the #start_revision and #finish_revision" do
+    describe "#call" do
+      it "calls Finish commands for each finish!story_id found in the git logs between the #start_revision and #finish_revision" do
         working_dir = File.expand_path("#{File.dirname(__FILE__)}/../..")
         start_revision, finish_revision = "start_revision", "finish_revision"
         log = GitLog.new(working_dir, start_revision, finish_revision)
@@ -21,14 +21,28 @@ module TrackerGit
           end
         end
 
-        log.parse.should == [
-          Command::Finish.new(111111),
-          Command::Finish.new(222222),
-          Command::Finish.new(222223),
-          Command::Finish.new(333333),
-          Command::Finish.new(333334),
-          Command::Finish.new(333335),
-        ]
+        tracker = Tracker.new
+
+        mock.proxy(Command::Finish).new(111111) do |finish|
+          mock.strong(finish).call(tracker)
+        end
+        mock.proxy(Command::Finish).new(222222) do |finish|
+          mock.strong(finish).call(tracker)
+        end
+        mock.proxy(Command::Finish).new(222223) do |finish|
+          mock.strong(finish).call(tracker)
+        end
+        mock.proxy(Command::Finish).new(333333) do |finish|
+          mock.strong(finish).call(tracker)
+        end
+        mock.proxy(Command::Finish).new(333334) do |finish|
+          mock.strong(finish).call(tracker)
+        end
+        mock.proxy(Command::Finish).new(333335) do |finish|
+          mock.strong(finish).call(tracker)
+        end
+
+        log.call(tracker)
       end
     end
   end

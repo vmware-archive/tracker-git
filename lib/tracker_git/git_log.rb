@@ -5,6 +5,14 @@ module TrackerGit
       @working_directory, @start_revision, @finish_revision = working_directory, start_revision, finish_revision
     end
 
+    def call(tracker)
+      parse.each do |command|
+        command.call(tracker)
+      end
+    end
+
+    protected
+
     def parse
       git = Git.open(working_directory, :log => Logger.new(STDOUT))
       commits = git.log.between(start_revision, finish_revision)
