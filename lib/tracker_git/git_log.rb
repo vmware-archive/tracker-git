@@ -13,9 +13,8 @@ module TrackerGit
 
       finish_regexp = Regexp.new("finish!([0-9]+)")
       commits.each do |commit|
-        matches = finish_regexp.match(commit.message)
-        if matches
-          commands << Command::Finish.new(matches[1].to_i)
+        commit.message.gsub(finish_regexp) do |occurrence|
+          commands << Command::Finish.new(finish_regexp.match(occurrence)[1].to_i)
         end
       end
       

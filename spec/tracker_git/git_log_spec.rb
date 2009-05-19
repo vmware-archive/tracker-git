@@ -13,9 +13,10 @@ module TrackerGit
             mock.strong(log).between(start_revision, finish_revision) do
               [
                 Git::Object::Commit.new("base0", "sha0", 'message' => "finish!111111", 'parent' => ['sha-1']),
-                Git::Object::Commit.new("base1", "sha1", 'message' => "finish!222222", 'parent' => ['sha0']),
+                Git::Object::Commit.new("base1", "sha1", 'message' => "finish!222222 and finish!222223", 'parent' => ['sha0']),
                 Git::Object::Commit.new("base2", "sha2", 'message' => "", 'parent' => ['sha1']),
                 Git::Object::Commit.new("base3", "sha3", 'message' => "finish!333333", 'parent' => ['sha2']),
+#                Git::Object::Commit.new("base3", "sha3", 'message' => "finish!333333,333334,333335", 'parent' => ['sha2']),
               ]
             end
           end
@@ -24,7 +25,10 @@ module TrackerGit
         log.parse.should == [
           Command::Finish.new(111111),
           Command::Finish.new(222222),
+          Command::Finish.new(222223),
           Command::Finish.new(333333),
+#          Command::Finish.new(333334),
+#          Command::Finish.new(333335),
         ]
       end
     end
