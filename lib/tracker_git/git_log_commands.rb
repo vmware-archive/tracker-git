@@ -6,29 +6,26 @@ module TrackerGit
     end
 
     def call(tracker)
-      parse.each do |command|
-        command.call(tracker)
-      end
+      commits = get_commits
+      call_finish_commands(commits, tracker)
     end
 
     protected
 
-    def parse
+    def get_commits
       git = Git.open(working_directory, :log => Logger.new(STDOUT))
-      commits = git.log.between(start_revision, finish_revision)
+      git.log.between(start_revision, finish_revision)
+    end
 
-      commands = []
-
+    def call_finish_commands(commits, tracker)
       finish_regexp = Regexp.new("finish!([0-9,]+)")
       commits.each do |commit|
         commit.message.gsub(finish_regexp) do |occurrences|
           finish_regexp.match(occurrences)[1].split(",").each do |occurrence|
-            commands << Command::Finish.new(occurrence.to_i)
+            Command::Finish.new(occurrence.to_i).call(tracker)
           end
         end
       end
-      
-      commands
     end
   end
 end
