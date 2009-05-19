@@ -8,6 +8,7 @@ module TrackerGit
     def call(tracker)
       commits = get_commits
       call_finish_commands(commits, tracker)
+      call_deploy_command(commits, tracker)
     end
 
     protected
@@ -24,6 +25,15 @@ module TrackerGit
           finish_regexp.match(occurrences)[1].split(",").each do |occurrence|
             Command::Finish.call(tracker, occurrence.to_i)
           end
+        end
+      end
+    end
+
+    def call_deploy_command(commits, tracker)
+      deploy_regexp = Regexp.new("deploy!")
+      commits.each do |commit|
+        if commit.message.match(deploy_regexp)
+          return Command::Deploy.call(tracker)
         end
       end
     end
