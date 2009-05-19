@@ -1,5 +1,6 @@
 require "git"
 require "auto_tagger"
+require "logger"
 dir = File.dirname(__FILE__)
 require File.expand_path("#{dir}/../vendor/ruby-pivotal-tracker/pivotal_tracker")
 
