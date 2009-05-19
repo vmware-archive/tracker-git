@@ -11,10 +11,12 @@ module TrackerGit
 
       commands = []
 
-      finish_regexp = Regexp.new("finish!([0-9]+)")
+      finish_regexp = Regexp.new("finish!([0-9,]+)")
       commits.each do |commit|
-        commit.message.gsub(finish_regexp) do |occurrence|
-          commands << Command::Finish.new(finish_regexp.match(occurrence)[1].to_i)
+        commit.message.gsub(finish_regexp) do |occurrences|
+          finish_regexp.match(occurrences)[1].split(",").each do |occurrence|
+            commands << Command::Finish.new(occurrence.to_i)
+          end
         end
       end
       
