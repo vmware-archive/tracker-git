@@ -32,6 +32,14 @@ module TrackerGit
 
         log.call(tracker)
       end
+
+      it "calls Deploy command only once, even if requested in multiple commits and multiple times in the same commit" do
+        pending
+      end
+
+      it "calls Deploy command after all the Finish commands have run" do
+        pending
+      end
     end
   end
 end

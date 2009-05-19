@@ -13,4 +13,8 @@ Spec::Runner.configure do |config|
 end
 
 class Spec::ExampleGroup
+  attr_reader :tracker
+  before do
+    @tracker = Tracker.new
+  end
 end
